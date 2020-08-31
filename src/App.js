@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: [],
+      todos: JSON.parse(window.localStorage.getItem('todos')) || [],
       todoInput: INITIAL_INPUT_VALUE,
       search: INITIAL_SEARCH_VALUE,
     };
@@ -82,6 +82,7 @@ class App extends React.Component {
           onChange={this.inputChangeHandler}
           onClick={this.clearCompleted}
           />
+        {window.localStorage.setItem('todos', JSON.stringify(this.state.todos))}
       </div>
     );
   }
